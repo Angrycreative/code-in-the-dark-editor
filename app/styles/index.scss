@@ -59,6 +59,30 @@ body.show-instructions {
   }
 }
 
+.assets-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  text-align: center;
+  display: none;
+
+  .assets-frame {
+    margin-top: 100px;
+    max-width: 900px;
+    width: 100%;
+    height: 600px;
+    display: inline-block;
+    border: 0;
+  }
+}
+
+body.show-assets {
+  .assets-container {
+    display: block;
+  }
+}
+
 .background {
   position: absolute;
   top: 0;
@@ -252,6 +276,11 @@ body.power-mode #editor {
 }
 
 .finish-button {
+  float: right;
+  margin-left: 10px;
+}
+
+.assets-button {
   float: right;
   margin-left: 10px;
 }

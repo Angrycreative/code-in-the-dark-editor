@@ -84,6 +84,7 @@ class App
     $(window).on "resize", @onResize
 
     $(".instructions-container, .instructions-button").on "click", @onClickInstructions
+    $(".assets-container, .assets-button").on "click", @onClickAssets
     @$reference.on "click", @onClickReference
     @$finish.on "click", @onClickFinish
     $(".finish-cancel-button").on "click", => @$finishDialog[0].close()
@@ -281,6 +282,10 @@ class App
   onClickInstructions: =>
     $("body").toggleClass "show-instructions"
     @editor.focus() unless $("body").hasClass "show-instructions"
+
+  onClickAssets: =>
+    $("body").toggleClass "show-assets"
+    @editor.focus() unless $("body").hasClass "show-assets"
 
   onClickReference: =>
     @$reference.toggleClass "active"
