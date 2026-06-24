@@ -323,11 +323,13 @@ body.power-mode #editor {
 }
 
 .reset-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: rgba(0, 0, 0, 0.5);
   font-size: 18px;
   padding: 4px 8px;
   opacity: 0.6;
-  line-height: 1;
 
   &:hover {
     opacity: 1;
