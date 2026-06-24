@@ -30,8 +30,9 @@
     <div class="reference-screenshot" style="background-image:url(assets/page.png);"></div>
   </div>
 
-  <div class="name-tag">
-    Unnamed
+  <div class="bottom-left-controls">
+    <div class="name-tag">Unnamed</div>
+    <button class="reset-button" title="Start over">🔄</button>
   </div>
 
   <div class="power-mode-indicator">
@@ -48,6 +49,15 @@
   </div>
 
   <iframe class="result" src="assets/result.html"></iframe>
+
+  <dialog class="reset-dialog">
+    <p>Start over?</p>
+    <p class="reset-warning">This will delete your code and all stored data. This cannot be undone.</p>
+    <div class="reset-dialog-buttons">
+      <button class="reset-cancel-button">Cancel</button>
+      <button class="reset-confirm-button">Start over</button>
+    </div>
+  </dialog>
 
   <dialog class="finish-dialog">
     <p>This will show the results of your code.</p>

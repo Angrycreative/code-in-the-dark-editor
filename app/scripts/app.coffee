@@ -61,6 +61,7 @@ class App
     @canvasContext = @canvas.getContext "2d"
     @$finish = $ ".finish-button"
     @$finishDialog = $ ".finish-dialog"
+    @$resetDialog = $ ".reset-dialog"
     @$snitchContainer = $ ".snitch-container"
     @$snitchCounts = $ ".snitch-count"
     @$resultSnitch = $ ".result-snitch"
@@ -87,6 +88,9 @@ class App
     @$finish.on "click", @onClickFinish
     $(".finish-cancel-button").on "click", => @$finishDialog[0].close()
     $(".finish-confirm-button").on "click", @onClickFinishConfirm
+    $(".reset-button").on "click", => @$resetDialog[0].showModal()
+    $(".reset-cancel-button").on "click", => @$resetDialog[0].close()
+    $(".reset-confirm-button").on "click", @onClickResetConfirm
     @$nameTag.on "click", => @getName true
     @$nameDialog[0].addEventListener "close", @onNameDialogClose
 
@@ -293,6 +297,19 @@ class App
     @$result[0].contentWindow.postMessage(@editor.getValue(), "*")
     @$result.show()
     @$resultSnitch.toggle @finishCount > 1
+
+  onClickResetConfirm: =>
+    @$resetDialog[0].close()
+    localStorage.removeItem "content"
+    localStorage.removeItem "name"
+    localStorage.removeItem "finishCount"
+    @editor.setValue "", -1
+    @finishCount = 0
+    @renderFinishCount()
+    @$result.hide()
+    @$resultSnitch.hide()
+    @endStreak()
+    @getName()
 
   onChange: (e) =>
     @debouncedSaveContent()

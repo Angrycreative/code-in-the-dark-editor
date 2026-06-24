@@ -300,11 +300,17 @@ body.power-mode #editor {
   }
 }
 
-.name-tag {
+.bottom-left-controls {
   position: absolute;
   z-index: 40;
   bottom: 20px;
   left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.name-tag {
   padding: 8px 12px;
   background: rgba(#3A9364, 0.75);
   color: white;
@@ -313,6 +319,18 @@ body.power-mode #editor {
   &:hover {
     cursor: pointer;
     opacity: 0.8;
+  }
+}
+
+.reset-button {
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 18px;
+  padding: 4px 8px;
+  opacity: 0.6;
+  line-height: 1;
+
+  &:hover {
+    opacity: 1;
   }
 }
 
@@ -370,6 +388,47 @@ body.power-mode {
 
   .exclamations .exclamation {
     color: #00DDFF;
+  }
+}
+
+.reset-dialog {
+  font-family: "Press Start 2P", sans-serif;
+  background: #111;
+  border: 2px solid #FF3333;
+  color: white;
+  padding: 40px;
+  max-width: 480px;
+  width: 90%;
+  line-height: 1.8;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  p {
+    margin: 0 0 20px;
+    font-size: 13px;
+  }
+
+  .reset-warning {
+    color: #FF3333;
+    font-size: 12px;
+    margin-bottom: 32px;
+  }
+
+  .reset-dialog-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .reset-cancel-button {
+    flex: 1;
+    background: #333;
+  }
+
+  .reset-confirm-button {
+    flex: 1;
+    background: #933a3a;
   }
 }
 
