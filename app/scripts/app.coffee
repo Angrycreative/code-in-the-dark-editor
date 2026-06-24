@@ -94,6 +94,9 @@ class App
     editor.session.setOption "useWorker", false
     editor.session.setFoldStyle "manual"
     editor.$blockScrolling = Infinity
+    editor.setOption "behavioursEnabled", false
+    editor.setOption "enableBasicAutocompletion", false
+    editor.setOption "enableLiveAutocompletion", false
 
     editor
 
@@ -258,15 +261,14 @@ class App
 
   onChange: (e) =>
     @debouncedSaveContent()
-    insertTextAction = e.data.action is "insertText"
+    insertTextAction = e.action is "insert"
     if insertTextAction
       @increaseStreak()
       @debouncedEndStreak()
 
     @throttledShake()
 
-    range = e.data.range
-    pos = if insertTextAction then range.end else range.start
+    pos = if insertTextAction then e.end else e.start
 
     token = @editor.session.getTokenAt pos.row, pos.column
 
