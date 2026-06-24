@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Press Start 2P";
-  src: url(~assets/fonts/PressStart2P-Regular.ttf)  format("truetype");
+  src: url(../assets/fonts/PressStart2P-Regular.ttf)  format("truetype");
 }
 
 body, html {
@@ -67,13 +67,13 @@ body.show-instructions {
   right: 0;
   z-index: 0;
   opacity: 0.5;
-  background-image: url(~assets/images/logo.png);
+  background-image: url(../assets/images/logo.png);
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: 520px 476px;
 
   .power-mode & {
-    background-image: url(~assets/images/logo-power.png);
+    background-image: url(../assets/images/logo-power.png);
     animation: background-power 2s infinite both;
   }
 }
@@ -268,7 +268,7 @@ body.power-mode #editor {
   bottom: 20px;
   left: 20px;
   padding: 20px;
-  background: transparentize(#3A9364, 0.25);
+  background: rgba(#3A9364, 0.75);
   color: white;
   font-size: 56px;
 
@@ -313,7 +313,7 @@ body.power-mode {
   }
 
   .name-tag {
-    background: transparentize(#00DDFF, 0.25);
+    background: rgba(#00DDFF, 0.75);
   }
 
   .streak-container {

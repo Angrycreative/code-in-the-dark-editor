@@ -12,17 +12,19 @@
 * Edit the `assets/instructions.html` file with information about the extra assets and their dimensions.
 
 ## Developing
-Here's how to install the dependencies and run the editor locally:
+Here's how to install the dependencies and run the editor locally (needs a recent Node.js):
 ```bash
 $ npm install
-$ ./node_modules/.bin/gulp serve
+$ npm run dev
 ```
 
 To build the editor, run:
 ```bash
-$ gulp dist
+$ npm run build
 ```
-This will compile all scripts and styles and inline them into a single html file in the `dist/` folder. It will also create a `dist/assets/` folder, which separately contains the instructions and page screenshot so that they can easily be changed between different rounds of the competition.
+This compiles all scripts and styles and inlines them into a single `dist/editor.html` file. It also creates a `dist/assets/` folder, which separately contains the instructions and page screenshot so that they can easily be changed between different rounds of the competition.
+
+The editor is built with [Vite](https://vitejs.dev). Earlier versions used gulp and webpack; see `CLAUDE.md` for the current build details.
 
 ## Contributing
 Contributions to the editor welcome. If you've fixed a bug or implemented a cool new feature that you would like to share, please feel free to open a pull request here.

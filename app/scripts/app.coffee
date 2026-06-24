@@ -1,12 +1,12 @@
-require "../styles/index"
+import "../styles/index.scss"
 
-_ = require "underscore"
-$ = require "jquery"
+import _ from "underscore"
+import $ from "jquery"
 
-ace = require "brace"
-require "brace/mode/html"
-require "brace/theme/vibrant_ink"
-require "brace/ext/searchbox"
+import ace from "brace"
+import "brace/mode/html"
+import "brace/theme/vibrant_ink"
+import "brace/ext/searchbox"
 
 class App
   POWER_MODE_ACTIVATION_THRESHOLD: 200
