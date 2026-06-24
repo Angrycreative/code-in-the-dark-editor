@@ -1,30 +1,73 @@
-# The official editor for [Code in the Dark](https://github.com/codeinthedark/codeinthedark.github.io)
-*Read more about the Code in the Dark competition [here](https://github.com/codeinthedark/codeinthedark.github.io)*
+# Code in the Dark — Editor (Angry Creative fork)
 
-![image](https://cloud.githubusercontent.com/assets/688415/11479175/f3aedfbe-9790-11e5-9ad9-ce930fe5a3a8.png)
+An unofficial but actively maintained fork of the [official Code in the Dark editor](https://github.com/codeinthedark/editor), updated to run on modern Node.js and browsers. If the upstream editor no longer builds or runs for you, this fork does.
 
-**Try the editor online: http://codeinthedark.com/editor/**
+*Read more about the Code in the Dark competition [here](https://github.com/codeinthedark/codeinthedark.github.io).*
 
-## How to Use
-* Grab the contents of the [`dist/`](https://github.com/codeinthedark/editor/tree/master/dist) folder, or download [this zip](https://github.com/codeinthedark/editor/releases/download/v0.1.0/editor.zip). All contestants should be given a copy of the editor.
-* Replace `assets/page.png` in the editor files with a screenshot of the page that is to be built in the competition. 
-* Add any extra assets (e.g. images) that are required to build the page in the `assets/` folder.
-* Edit the `assets/instructions.html` file with information about the extra assets and their dimensions.
+**Try it online: https://angrycreative.github.io/code-in-the-dark-editor/**
+
+---
+
+## What is Code in the Dark?
+
+A live coding competition where contestants race to recreate a reference screenshot using only an HTML editor — no browser preview allowed. At the end of the round everyone hits "Finish" and the results are revealed on screen.
+
+## What this fork adds
+
+- **Modern build toolchain** — replaced the unmaintainable gulp 3 + webpack 1 + node-sass stack with [Vite](https://vitejs.dev). Builds cleanly on Node 18+.
+- **Up-to-date ACE editor** — switched from the abandoned `brace` package to the official `ace-builds`, fixing a crash on every keypress and eliminating the `<ht></ht>` tag auto-closing bug.
+- **HTML linting** — the ACE HTML worker is re-enabled, showing gutter error markers for unclosed tags, malformed structure, and embedded CSS/JS errors in real time.
+- **Styled dialogs** — name entry, finish confirmation, and reset confirmation all use native `<dialog>` elements instead of browser prompts, styled to match the editor theme.
+- **Name badge** — contestant name is entered on first load, persisted across reloads, and shown in the corner throughout the competition.
+- **Asset browser** — a dedicated panel with image thumbnails; clicking a thumbnail copies the correct relative path to the clipboard so contestants don't have to type filenames by hand.
+- **Finish counter (anti-cheat)** — tracks how many times "Finish" has been clicked and displays the count visibly, including on the results screen if it exceeds one.
+- **Reset button** — lets a contestant start over with a confirmation step; clears all stored data.
+- **Canvas resize** — the particle canvas now resizes correctly when the browser window is resized.
+- **GitHub Actions deployment** — automatically builds and deploys to GitHub Pages on every push to `master`.
+
+---
+
+## Running a competition round
+
+### Online (no setup required)
+
+Point contestants to **https://angrycreative.github.io/code-in-the-dark-editor/**. The editor runs entirely in the browser — no installation needed.
+
+For a custom reference image or assets, use the local/offline setup below.
+
+### Local / offline
+
+1. Run `npm run build` (see [Developing](#developing)) or grab the `dist/` folder from this repo.
+2. Give each contestant a copy of the `dist/` folder (or host it on a local server).
+3. Replace `dist/assets/page.png` with a screenshot of the page to be built.
+4. Add any extra assets (images, fonts, etc.) to `dist/assets/` and open `dist/assets/beach.jpg` as a template — replace or add asset entries in `dist/assets/assets.html` so the asset browser shows them with correct filenames and dimensions.
+5. Contestants open `dist/editor.html` directly in their browser — no server required.
+
+> **Asset paths:** the result viewer loads from `assets/result.html`, so relative paths in contestant HTML resolve against `assets/`. The asset browser copies bare filenames (e.g. `beach.jpg`, not `assets/beach.jpg`), which is what contestants should use in their `<img src="...">` tags.
+
+---
 
 ## Developing
-Here's how to install the dependencies and run the editor locally (needs a recent Node.js):
+
+Requires Node.js 18 or later (developed on Node 24).
+
 ```bash
-$ npm install
-$ npm run dev
+npm install       # install dependencies
+npm run dev       # Vite dev server with HMR at http://localhost:5173
+npm run build     # build to dist/
+npm run preview   # serve dist/ to check the production output
 ```
 
-To build the editor, run:
-```bash
-$ npm run build
-```
-This compiles all scripts and styles and inlines them into a single `dist/editor.html` file. It also creates a `dist/assets/` folder, which separately contains the instructions and page screenshot so that they can easily be changed between different rounds of the competition.
+The build produces:
+- `dist/editor.html` — the fully self-contained single-file editor (JS, CSS, and fonts all inlined)
+- `dist/assets/` — organizer-swappable files: `page.png`, `instructions.html`, `assets.html`, `result.html`, `beach.jpg`, and the ACE HTML linting worker
 
-The editor is built with [Vite](https://vitejs.dev). Earlier versions used gulp and webpack; see `CLAUDE.md` for the current build details.
+Source is **CoffeeScript** (`app/scripts/app.coffee`) and **SCSS** (`app/styles/index.scss`). See `CLAUDE.md` for full build and architecture details.
+
+---
 
 ## Contributing
-Contributions to the editor welcome. If you've fixed a bug or implemented a cool new feature that you would like to share, please feel free to open a pull request here.
+
+Pull requests welcome. Please open an issue first for larger changes so we can discuss the approach.
+
+This is a fork of [codeinthedark/editor](https://github.com/codeinthedark/editor) — if your change is broadly useful, consider also opening a PR upstream.
