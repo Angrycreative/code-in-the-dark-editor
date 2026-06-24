@@ -7,6 +7,7 @@ import ace from "ace-builds"
 import "ace-builds/src-noconflict/mode-html"
 import "ace-builds/src-noconflict/theme-vibrant_ink"
 import "ace-builds/src-noconflict/ext-searchbox"
+import "ace-builds/src-noconflict/ext-error_marker"
 
 class App
   POWER_MODE_ACTIVATION_THRESHOLD: 200
@@ -103,6 +104,7 @@ class App
     window.requestAnimationFrame @onFrame
 
   setupAce: ->
+    ace.config.set "workerPath", "./assets/workers"
     editor = ace.edit "editor"
 
     editor.setShowPrintMargin false
@@ -110,7 +112,6 @@ class App
     editor.setFontSize 20
     editor.setTheme "ace/theme/vibrant_ink"
     editor.getSession().setMode "ace/mode/html"
-    editor.session.setOption "useWorker", false
     editor.session.setFoldStyle "manual"
     editor.setOption "behavioursEnabled", false
     editor.setOption "enableBasicAutocompletion", false

@@ -292,7 +292,7 @@ body.power-mode #editor {
 .reference-screenshot-container {
   position: absolute;
   z-index: 50;
-  bottom: 62px;
+  bottom: 116px;
   right: 20px;
   cursor: pointer;
   color: white;
@@ -329,13 +329,14 @@ body.power-mode #editor {
   }
 }
 
-.bottom-left-controls {
+.player-controls {
   position: absolute;
   z-index: 40;
-  bottom: 20px;
-  left: 20px;
+  bottom: 68px;
+  right: 20px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
 }
 
