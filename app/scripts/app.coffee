@@ -3,10 +3,10 @@ import "../styles/index.scss"
 import _ from "underscore"
 import $ from "jquery"
 
-import ace from "brace"
-import "brace/mode/html"
-import "brace/theme/vibrant_ink"
-import "brace/ext/searchbox"
+import ace from "ace-builds"
+import "ace-builds/src-noconflict/mode-html"
+import "ace-builds/src-noconflict/theme-vibrant_ink"
+import "ace-builds/src-noconflict/ext-searchbox"
 
 class App
   POWER_MODE_ACTIVATION_THRESHOLD: 200
@@ -43,6 +43,7 @@ class App
   "Stupendous!", "Extreme!", "Awesome!"]
 
   currentStreak: 0
+  finishCount: 0
   powerMode: false
   particles: []
   particlePointer: 0
@@ -59,6 +60,10 @@ class App
     @canvas = @setupCanvas()
     @canvasContext = @canvas.getContext "2d"
     @$finish = $ ".finish-button"
+    @$finishDialog = $ ".finish-dialog"
+    @$snitchContainer = $ ".snitch-container"
+    @$snitchCounts = $ ".snitch-count"
+    @$resultSnitch = $ ".result-snitch"
     @$nameDialog = $ ".name-dialog"
     @$nameInput = $ ".name-input"
 
@@ -80,12 +85,17 @@ class App
     $(".instructions-container, .instructions-button").on "click", @onClickInstructions
     @$reference.on "click", @onClickReference
     @$finish.on "click", @onClickFinish
+    $(".finish-cancel-button").on "click", => @$finishDialog[0].close()
+    $(".finish-confirm-button").on "click", @onClickFinishConfirm
     @$nameTag.on "click", => @getName true
     @$nameDialog[0].addEventListener "close", @onNameDialogClose
 
     @getName()
 
-    window.requestAnimationFrame? @onFrame
+    @finishCount = parseInt(localStorage["finishCount"] or 0, 10)
+    @renderFinishCount()
+
+    window.requestAnimationFrame @onFrame
 
   setupAce: ->
     editor = ace.edit "editor"
@@ -142,7 +152,7 @@ class App
   onFrame: (time) =>
     @drawParticles time - @lastDraw
     @lastDraw = time
-    window.requestAnimationFrame? @onFrame
+    window.requestAnimationFrame @onFrame
 
   increaseStreak: ->
     @currentStreak++
@@ -160,6 +170,10 @@ class App
     @renderStreak()
     @deactivatePowerMode()
 
+  renderFinishCount: ->
+    @$snitchCounts.text @finishCount
+    @$snitchContainer.toggle @finishCount > 0
+
   renderStreak: ->
     @$streakCounter
       .text @currentStreak
@@ -170,13 +184,11 @@ class App
 
   refreshStreakBar: ->
     @$streakBar.css
-      "webkit-transform": "scaleX(1)"
       "transform": "scaleX(1)"
       "transition": "none"
 
     _.defer =>
       @$streakBar.css
-        "webkit-transform": ""
         "transform": ""
         "transition": "all #{@STREAK_TIMEOUT}ms linear"
 
@@ -271,14 +283,16 @@ class App
     @editor.focus() unless @$reference.hasClass("active")
 
   onClickFinish: =>
-    confirm = prompt "
-      This will show the results of your code. Doing this before the round is over
-      WILL DISQUALIFY YOU. Are you sure you want to proceed? Type \"yes\" to confirm.
-    "
+    @$finishDialog[0].showModal()
 
-    if confirm?.toLowerCase() is "yes"
-      @$result[0].contentWindow.postMessage(@editor.getValue(), "*")
-      @$result.show()
+  onClickFinishConfirm: =>
+    @$finishDialog[0].close()
+    @finishCount++
+    localStorage["finishCount"] = @finishCount
+    @renderFinishCount()
+    @$result[0].contentWindow.postMessage(@editor.getValue(), "*")
+    @$result.show()
+    @$resultSnitch.toggle @finishCount > 1
 
   onChange: (e) =>
     @debouncedSaveContent()

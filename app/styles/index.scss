@@ -206,6 +206,44 @@ body.power-mode #editor {
   }
 }
 
+.snitch-container {
+  display: none;
+  margin-top: 30px;
+
+  .snitch-label {
+    color: white;
+    font-size: 16px;
+  }
+
+  .snitch-count {
+    font-size: 80px;
+    color: #FF3333;
+    padding-top: 30px;
+  }
+}
+
+.result-snitch {
+  display: none;
+  position: absolute;
+  z-index: 41;
+  top: 20px;
+  right: 20px;
+  text-align: right;
+  background: rgba(0, 0, 0, 0.65);
+  padding: 16px 20px;
+
+  .snitch-label {
+    color: white;
+    font-size: 16px;
+  }
+
+  .snitch-count {
+    font-size: 80px;
+    color: #FF3333;
+    padding-top: 30px;
+  }
+}
+
 .button-bar {
   position: absolute;
   z-index: 10;
@@ -332,6 +370,47 @@ body.power-mode {
 
   .exclamations .exclamation {
     color: #00DDFF;
+  }
+}
+
+.finish-dialog {
+  font-family: "Press Start 2P", sans-serif;
+  background: #111;
+  border: 2px solid #F9FF00;
+  color: white;
+  padding: 40px;
+  max-width: 520px;
+  width: 90%;
+  line-height: 1.8;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  p {
+    margin: 0 0 20px;
+    font-size: 13px;
+  }
+
+  .finish-warning {
+    color: #F9FF00;
+    font-size: 12px;
+    margin-bottom: 32px;
+  }
+
+  .finish-dialog-buttons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .finish-cancel-button {
+    flex: 1;
+    background: #333;
+  }
+
+  .finish-confirm-button {
+    flex: 1;
+    background: #933a3a;
   }
 }
 

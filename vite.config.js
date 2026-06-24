@@ -36,7 +36,7 @@ export default defineConfig({
   base: "./",
   plugins: [coffee(), viteSingleFile(), renameToEditorHtml(outDir)],
   // .coffee confuses the dependency scanner, so name these explicitly.
-  optimizeDeps: { include: ["jquery", "underscore", "brace"] },
+  optimizeDeps: { include: ["jquery", "underscore", "ace-builds"] },
   css: {
     preprocessorOptions: {
       scss: { api: "modern-compiler" },
