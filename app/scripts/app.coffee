@@ -59,6 +59,8 @@ class App
     @canvas = @setupCanvas()
     @canvasContext = @canvas.getContext "2d"
     @$finish = $ ".finish-button"
+    @$nameDialog = $ ".name-dialog"
+    @$nameInput = $ ".name-input"
 
     @$body = $ "body"
 
@@ -73,11 +75,13 @@ class App
 
     @editor.getSession().on "change", @onChange
     $(window).on "beforeunload", -> "Hold your horses!"
+    $(window).on "resize", @onResize
 
     $(".instructions-container, .instructions-button").on "click", @onClickInstructions
     @$reference.on "click", @onClickReference
     @$finish.on "click", @onClickFinish
     @$nameTag.on "click", => @getName true
+    @$nameDialog[0].addEventListener "close", @onNameDialogClose
 
     @getName()
 
@@ -93,7 +97,6 @@ class App
     editor.getSession().setMode "ace/mode/html"
     editor.session.setOption "useWorker", false
     editor.session.setFoldStyle "manual"
-    editor.$blockScrolling = Infinity
     editor.setOption "behavioursEnabled", false
     editor.setOption "enableBasicAutocompletion", false
     editor.setOption "enableLiveAutocompletion", false
@@ -102,14 +105,30 @@ class App
 
   setupCanvas: ->
     canvas = $(".canvas-overlay")[0]
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    @resizeCanvas canvas
     canvas
 
+  resizeCanvas: (canvas = @canvas) ->
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+  onResize: =>
+    @resizeCanvas()
+
   getName: (forceUpdate) ->
-    name = (not forceUpdate and localStorage["name"]) || prompt "What's your name?"
-    localStorage["name"] = name
-    @$nameTag.text(name) if name
+    saved = localStorage["name"]
+    return unless forceUpdate or not saved
+    @$nameInput.val(saved or "")
+    @$nameDialog[0].showModal()
+    @$nameInput[0].select()
+
+  onNameDialogClose: =>
+    name = @$nameInput.val().trim()
+    if name
+      localStorage["name"] = name
+      @$nameTag.text name
+    else if not localStorage["name"]
+      @$nameDialog[0].showModal()
 
   loadContent: ->
     return unless (content = localStorage["content"])

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Code in the Dark</title>
   <script type="module" src="./scripts/app.coffee"></script>
 </head>
@@ -37,6 +38,15 @@
     <button class="instructions-button">Instructions</button>
   </div>
 
-  <iframe class="result" src="assets/result.html" frameborder="0"></iframe>
+  <iframe class="result" src="assets/result.html"></iframe>
+
+  <dialog class="name-dialog">
+    <iframe class="dialog-instructions" src="assets/instructions.html"></iframe>
+    <form method="dialog">
+      <label>What's your name?</label>
+      <input class="name-input" type="text" maxlength="30" autocomplete="off" spellcheck="false">
+      <button type="submit">Let's go!</button>
+    </form>
+  </dialog>
 </body>
 </html>
