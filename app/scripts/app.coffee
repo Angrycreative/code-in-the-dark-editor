@@ -117,7 +117,9 @@ class App
 
   getName: (forceUpdate) ->
     saved = localStorage["name"]
-    return unless forceUpdate or not saved
+    if saved and not forceUpdate
+      @$nameTag.text saved
+      return
     @$nameInput.val(saved or "")
     @$nameDialog[0].showModal()
     @$nameInput[0].select()
