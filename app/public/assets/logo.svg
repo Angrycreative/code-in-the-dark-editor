@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 40" width="168" height="40" fill="none">
+<rect x="0" y="0" width="40" height="40" rx="12" fill="#0070f0"></rect>
+<polygon points="20.00,7.00 23.17,15.63 32.36,15.98 25.14,21.67 27.64,30.52 20.00,25.40 12.36,30.52 14.86,21.67 7.64,15.98 16.83,15.63" fill="#ffffff"></polygon>
+<text x="54" y="28.5" font-family="&#39;Archivo&#39;,&#39;Arial Black&#39;,&#39;Arial&#39;,sans-serif" font-size="27" font-weight="800" letter-spacing="0.5" fill="#1c1c1e">VALOR</text>
+</svg>

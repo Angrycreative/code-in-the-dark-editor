@@ -43,6 +43,10 @@
       margin: 0 auto;
     }
 
+    .asset img.icon {
+      filter: invert(1);
+    }
+
     .asset-name {
       font-size: 11px;
       margin-top: 10px;
@@ -72,14 +76,54 @@
 <body>
   <div class="assets">
 
-    <div class="asset" data-path="beach.jpg">
-      <img src="beach.jpg" alt="">
-      <div class="asset-name">beach.jpg</div>
-      <div class="asset-dims">1223 × 815</div>
+    <div class="asset" data-path="logo.svg">
+      <img src="logo.svg" alt="">
+      <div class="asset-name">logo.svg</div>
+      <div class="asset-dims">168 × 40</div>
       <div class="asset-copied-msg">Copied!</div>
     </div>
 
-    <!-- Copy the block above for each additional asset -->
+    <div class="asset" data-path="hero-stratos.svg">
+      <img src="hero-stratos.svg" alt="">
+      <div class="asset-name">hero-stratos.svg</div>
+      <div class="asset-dims">600 × 720</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="hero-verdant.svg">
+      <img src="hero-verdant.svg" alt="">
+      <div class="asset-name">hero-verdant.svg</div>
+      <div class="asset-dims">600 × 720</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="hero-blaze.svg">
+      <img src="hero-blaze.svg" alt="">
+      <div class="asset-name">hero-blaze.svg</div>
+      <div class="asset-dims">600 × 720</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="hero-nocturne.svg">
+      <img src="hero-nocturne.svg" alt="">
+      <div class="asset-name">hero-nocturne.svg</div>
+      <div class="asset-dims">600 × 720</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="search.svg">
+      <img src="search.svg" alt="" class="icon">
+      <div class="asset-name">search.svg</div>
+      <div class="asset-dims">32 × 32</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="cart.svg">
+      <img src="cart.svg" alt="" class="icon">
+      <div class="asset-name">cart.svg</div>
+      <div class="asset-dims">32 × 32</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
 
   </div>
   <script>
