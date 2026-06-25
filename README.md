@@ -29,21 +29,28 @@ A live coding competition where contestants race to recreate a reference screens
 
 ## Running a competition round
 
-### Online (no setup required)
+### Zero-effort: use it as-is
 
-Point contestants to **https://angrycreative.github.io/code-in-the-dark-editor/**. The editor runs entirely in the browser — no installation needed.
+The GitHub Pages deployment at **https://angrycreative.github.io/code-in-the-dark-editor/** comes with a ready-to-go challenge of medium difficulty — a reference screenshot and a matching set of assets. Just point contestants at the URL and go. No downloads, no configuration.
 
-For a custom reference image or assets, use the local/offline setup below.
+### Custom challenge: fork and swap the assets
+
+To run your own challenge, fork this repo and replace the files in `app/public/assets/`:
+
+1. Replace `page.png` with a screenshot of the page contestants should recreate.
+2. Add your image assets (SVGs, JPGs, etc.) to the same folder.
+3. Update `assets.html` with a card for each asset (filename, dimensions, thumbnail) — the asset browser reads this file directly.
+4. Push to `master` — GitHub Actions rebuilds and deploys automatically.
+
+Contestants use the same URL; the new challenge is live within a minute.
 
 ### Local / offline
 
 1. Run `npm run build` (see [Developing](#developing)) or grab the `dist/` folder from this repo.
 2. Give each contestant a copy of the `dist/` folder (or host it on a local server).
-3. Replace `dist/assets/page.png` with a screenshot of the page to be built.
-4. Add any extra assets (images, fonts, etc.) to `dist/assets/` and open `dist/assets/beach.jpg` as a template — replace or add asset entries in `dist/assets/assets.html` so the asset browser shows them with correct filenames and dimensions.
-5. Contestants open `dist/editor.html` directly in their browser — no server required.
+3. Contestants open `dist/editor.html` directly in their browser — no server required.
 
-> **Asset paths:** the result viewer loads from `assets/result.html`, so relative paths in contestant HTML resolve against `assets/`. The asset browser copies bare filenames (e.g. `beach.jpg`, not `assets/beach.jpg`), which is what contestants should use in their `<img src="...">` tags.
+> **Asset paths:** the result viewer loads from `assets/result.html`, so relative paths in contestant HTML resolve against `assets/`. The asset browser copies bare filenames (e.g. `logo.svg`, not `assets/logo.svg`), which is what contestants should use in their `<img src="...">` tags.
 
 ---
 
@@ -60,7 +67,7 @@ npm run preview   # serve dist/ to check the production output
 
 The build produces:
 - `dist/editor.html` — the fully self-contained single-file editor (JS, CSS, and fonts all inlined)
-- `dist/assets/` — organizer-swappable files: `page.png`, `instructions.html`, `assets.html`, `result.html`, `beach.jpg`, and the ACE HTML linting worker
+- `dist/assets/` — organizer-swappable files: `page.png`, `instructions.html`, `assets.html`, `result.html`, competition assets, and the ACE HTML linting worker
 
 Source is **CoffeeScript** (`app/scripts/app.coffee`) and **SCSS** (`app/styles/index.scss`). See `CLAUDE.md` for full build and architecture details.
 
