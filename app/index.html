@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Code in the Dark</title>
+  <script src="assets/challenges-config.js"></script>
   <script type="module" src="./scripts/app.coffee"></script>
 </head>
 <body>
@@ -27,7 +28,7 @@
   </div>
   <div class="reference-screenshot-container">
     <span>Reference</span>
-    <div class="reference-screenshot" style="background-image:url(assets/page.png);"></div>
+    <div class="reference-screenshot"></div>
   </div>
 
   <div class="player-controls">
@@ -54,6 +55,11 @@
   </div>
 
   <iframe class="result" src="assets/result.html"></iframe>
+
+  <dialog class="challenge-dialog">
+    <p>Choose your challenge</p>
+    <div class="challenge-buttons"></div>
+  </dialog>
 
   <dialog class="reset-dialog">
     <p>Start over?</p>

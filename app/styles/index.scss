@@ -505,6 +505,39 @@ body.power-mode {
   }
 }
 
+.challenge-dialog {
+  font-family: "Press Start 2P", sans-serif;
+  background: #111;
+  border: 2px solid #4EFFA1;
+  color: white;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  p {
+    margin: 0 0 32px;
+    font-size: 14px;
+    color: #4EFFA1;
+  }
+
+  .challenge-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .challenge-select-button {
+      width: 100%;
+      font-size: 14px;
+      padding: 16px;
+    }
+  }
+}
+
 .name-dialog {
   font-family: "Press Start 2P", sans-serif;
   background: #111;

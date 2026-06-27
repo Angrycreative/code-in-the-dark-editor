@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111;
+      color: white;
+      font-family: monospace;
+      padding: 24px;
+    }
+
+    .assets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .asset {
+      cursor: pointer;
+      padding: 12px;
+      border: 2px solid #333;
+      transition: border-color 0.15s;
+      text-align: center;
+      max-width: 220px;
+      user-select: none;
+    }
+
+    .asset:hover {
+      border-color: #4EFFA1;
+    }
+
+    .asset.copied {
+      border-color: #00DDFF;
+    }
+
+    .asset img {
+      display: block;
+      max-width: 180px;
+      max-height: 130px;
+      margin: 0 auto;
+    }
+
+    .asset img.icon {
+      filter: invert(1);
+    }
+
+    .asset-name {
+      font-size: 11px;
+      margin-top: 10px;
+      word-break: break-all;
+      color: #4EFFA1;
+    }
+
+    .asset-dims {
+      font-size: 10px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .asset-copied-msg {
+      font-size: 10px;
+      color: #00DDFF;
+      margin-top: 6px;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .asset.copied .asset-copied-msg {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="assets">
+
+    <div class="asset" data-path="challenges/hard/logo.svg">
+      <img src="logo.svg" alt="">
+      <div class="asset-name">logo.svg</div>
+      <div class="asset-dims">168 × 40</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="challenges/hard/hero-stratos.svg">
+      <img src="hero-stratos.svg" alt="">
+      <div class="asset-name">hero-stratos.svg</div>
+      <div class="asset-dims">600 × 720</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="challenges/hard/hero-verdant.svg">
+      <img src="hero-verdant.svg" alt="">
+      <div class="asset-name">hero-verdant.svg</div>
+      <div class="asset-dims">600 × 720</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="challenges/hard/hero-blaze.svg">
+      <img src="hero-blaze.svg" alt="">
+      <div class="asset-name">hero-blaze.svg</div>
+      <div class="asset-dims">600 × 720</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="challenges/hard/hero-nocturne.svg">
+      <img src="hero-nocturne.svg" alt="">
+      <div class="asset-name">hero-nocturne.svg</div>
+      <div class="asset-dims">600 × 720</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="challenges/hard/search.svg">
+      <img src="search.svg" alt="" class="icon">
+      <div class="asset-name">search.svg</div>
+      <div class="asset-dims">32 × 32</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+    <div class="asset" data-path="challenges/hard/cart.svg">
+      <img src="cart.svg" alt="" class="icon">
+      <div class="asset-name">cart.svg</div>
+      <div class="asset-dims">32 × 32</div>
+      <div class="asset-copied-msg">Copied!</div>
+    </div>
+
+  </div>
+  <script>
+    document.querySelectorAll('.asset').forEach(function(el) {
+      el.addEventListener('click', function() {
+        navigator.clipboard.writeText(el.dataset.path);
+        el.classList.add('copied');
+        setTimeout(function() { el.classList.remove('copied'); }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>

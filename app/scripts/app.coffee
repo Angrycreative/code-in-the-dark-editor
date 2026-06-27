@@ -46,6 +46,7 @@ class App
   currentStreak: 0
   finishCount: 0
   powerMode: false
+  currentChallenge: null
   particles: []
   particlePointer: 0
   lastDraw: 0
@@ -55,6 +56,7 @@ class App
     @$streakBar = $ ".streak-container .bar"
     @$exclamations = $ ".streak-container .exclamations"
     @$reference = $ ".reference-screenshot-container"
+    @$referenceScreenshot = $ ".reference-screenshot"
     @$nameTag = $ ".name-tag"
     @$result = $ ".result"
     @$editor = $ "#editor"
@@ -63,6 +65,7 @@ class App
     @$finish = $ ".finish-button"
     @$finishDialog = $ ".finish-dialog"
     @$resetDialog = $ ".reset-dialog"
+    @$challengeDialog = $ ".challenge-dialog"
     @$snitchContainer = $ ".snitch-container"
     @$snitchCounts = $ ".snitch-count"
     @$resultSnitch = $ ".result-snitch"
@@ -96,7 +99,7 @@ class App
     @$nameTag.on "click", => @getName true
     @$nameDialog[0].addEventListener "close", @onNameDialogClose
 
-    @getName()
+    @initChallenges()
 
     @finishCount = parseInt(localStorage["finishCount"] or 0, 10)
     @renderFinishCount()
@@ -147,6 +150,38 @@ class App
       @$nameTag.text name
     else if not localStorage["name"]
       @$nameDialog[0].showModal()
+
+  initChallenges: ->
+    $container = $ ".challenge-buttons"
+    for challenge in (window.CHALLENGES or [])
+      $("<button>")
+        .addClass "challenge-select-button"
+        .attr "data-challenge-id", challenge.id
+        .text challenge.label
+        .appendTo $container
+    $(".challenge-select-button").on "click", @onChallengeSelect
+    @getChallenge()
+
+  getChallenge: ->
+    challenges = window.CHALLENGES or []
+    saved = localStorage["challenge"]
+    if saved and challenges.some((c) -> c.id is saved)
+      @applyChallenge saved
+      @getName()
+      return
+    @$challengeDialog[0].showModal()
+
+  applyChallenge: (id) ->
+    @currentChallenge = id
+    @$referenceScreenshot.css "background-image", "url(assets/challenges/#{id}/page.png)"
+    $(".assets-frame").attr "src", "assets/challenges/#{id}/assets.html"
+
+  onChallengeSelect: (e) =>
+    id = $(e.currentTarget).data "challengeId"
+    localStorage["challenge"] = id
+    @$challengeDialog[0].close()
+    @applyChallenge id
+    @getName()
 
   loadContent: ->
     return unless (content = localStorage["content"])
@@ -309,13 +344,14 @@ class App
     localStorage.removeItem "content"
     localStorage.removeItem "name"
     localStorage.removeItem "finishCount"
+    localStorage.removeItem "challenge"
     @editor.setValue "", -1
     @finishCount = 0
     @renderFinishCount()
     @$result.hide()
     @$resultSnitch.hide()
     @endStreak()
-    @getName()
+    @getChallenge()
 
   onChange: (e) =>
     @debouncedSaveContent()

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 720" width="600" height="720">
+<rect width="600" height="720" fill="#fef3e0"></rect>
+<circle cx="300" cy="318" r="236" fill="#ffffff"></circle>
+<path d="M205 250 C150 360 120 520 150 665 L300 605 L450 665 C480 520 450 360 395 250 Z" fill="#c25400"></path>
+<rect x="250" y="460" width="46" height="225" rx="22" fill="#f08000"></rect>
+<rect x="304" y="460" width="46" height="225" rx="22" fill="#f08000"></rect>
+<rect x="250" y="632" width="46" height="53" rx="22" fill="#1c3cbe"></rect>
+<rect x="304" y="632" width="46" height="53" rx="22" fill="#1c3cbe"></rect>
+<path d="M212 280 Q212 246 252 244 L348 244 Q388 246 388 280 L360 452 Q357 462 346 462 L254 462 Q243 462 240 452 Z" fill="#f08000"></path>
+<rect x="246" y="448" width="108" height="22" rx="7" fill="#1c3cbe"></rect>
+<rect x="288" y="445" width="24" height="28" rx="5" fill="#ffffff"></rect>
+<path d="M214 286 Q176 312 180 364 Q183 414 250 452 L258 432 Q206 410 206 366 Q204 326 236 300 Z" fill="#f08000"></path>
+<path d="M386 286 Q424 312 420 364 Q417 414 350 452 L342 432 Q394 410 394 366 Q396 326 364 300 Z" fill="#f08000"></path>
+<ellipse cx="250" cy="448" rx="20" ry="16" fill="#1c3cbe"></ellipse>
+<ellipse cx="350" cy="448" rx="20" ry="16" fill="#1c3cbe"></ellipse>
+<circle cx="300" cy="350" r="44" fill="#ffffff"></circle>
+<polygon points="308,322 282,356 298,356 290,380 320,344 304,344 314,322" fill="#f08000"></polygon>
+<rect x="283" y="205" width="34" height="45" fill="#f0c5a0"></rect>
+<path d="M270 118 L278 92 L290 120 Z" fill="#f08000"></path>
+<path d="M330 118 L322 92 L310 120 Z" fill="#f08000"></path>
+<circle cx="300" cy="168" r="56" fill="#f08000"></circle>
+<ellipse cx="300" cy="200" rx="30" ry="20" fill="#f0c5a0"></ellipse>
+<polygon points="268,158 296,150 296,166 270,172" fill="#ffffff"></polygon>
+<polygon points="332,158 304,150 304,166 330,172" fill="#ffffff"></polygon>
+</svg>
